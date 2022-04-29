@@ -27,7 +27,7 @@ def sample_next_char(probabilities: np.ndarray) -> np.ndarray:
     """
     # TODO: (~2-3 lines) implement this method
     # Hint: np.random.choice is helpful
-    return None
+    return np.array([np.random.choice(len(row), p=row) for row in probabilities])
 
 
 def generate(

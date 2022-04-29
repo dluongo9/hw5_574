@@ -3,6 +3,7 @@ import numpy as np
 
 from edugrad.tensor import Tensor
 import ops
+import hw4_ops
 
 
 class Embedding(nn.Module):
@@ -45,4 +46,8 @@ class FeedForwardLanguageModel(nn.Module):
         # call it using as ops.concat(*embeddings), where embeddings is a list
         # of Tensors, corresponding to the relevant embeddings
         # [batch_size, num_words * embedding_size]
-        return None 
+        embeddings = [self.embedding.forward(word_index) for word_index in word_indices]
+        concatted = ops.concat(*embeddings)
+        layer1 = hw4_ops.relu(self.fc(concatted))
+        return self.output(layer1)
+
