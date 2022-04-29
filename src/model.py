@@ -48,6 +48,6 @@ class FeedForwardLanguageModel(nn.Module):
         # [batch_size, num_words * embedding_size]
         embeddings = [self.embedding.forward(word_index) for word_index in word_indices]
         concatted = ops.concat(*embeddings)
-        layer1 = hw4_ops.relu(self.fc(concatted))
+        layer1 = ops.tanh(self.fc(concatted))
         return self.output(layer1)
 
