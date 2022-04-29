@@ -4,6 +4,8 @@ import numpy as np
 from edugrad.optim import Optimizer, SGD
 from edugrad.tensor import Tensor
 
+# TODO: Replace with ref file
+
 class Adagrad(Optimizer):
 
     def __init__(self, params: Iterable[Tensor], lr: float = 1e-2):
