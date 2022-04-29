@@ -47,12 +47,12 @@ def examples_from_characters(chars: list[str], num_prev_chars: int) -> list[Exam
         list of Example dictionaries, as described above
     """
     result = []
-    number_of_examples = len(chars) - (num_prev_chars - 1)
+    number_of_examples = len(chars) - num_prev_chars
     for example_index in range(number_of_examples):
         char_seq = []
         for char_idx in range(num_prev_chars):
-            char_seq.append(chars[char_idx])
-        target = example_index + num_prev_chars
+            char_seq.append(chars[example_index + char_idx])
+        target = chars[example_index + num_prev_chars]
         result.append({"text": char_seq, "target": target})
     return result
 
