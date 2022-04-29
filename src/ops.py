@@ -1,3 +1,4 @@
+import math
 from itertools import accumulate
 
 import numpy as np
@@ -37,10 +38,13 @@ class tanh(Operation):
     """
     @staticmethod
     def forward(ctx, a):
-        # TODO: implement
-        return None
+        numerator = np.exp(a) - np.exp(-a)
+        denominator = np.exp(a) + np.exp(-a)
+        result = numerator / denominator
+        ctx.append(result)
+        return result
 
     @staticmethod
     def backward(ctx, grad_output):
-        # TODO: implement
-        return [None]
+        tanhed = ctx[-1]
+        return [(1 - np.square(tanhed)) * grad_output]
